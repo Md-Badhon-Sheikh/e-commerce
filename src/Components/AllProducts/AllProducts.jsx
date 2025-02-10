@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import productImg from "../../assets/gallery/g03.jpg";
+import { CiStar } from "react-icons/ci";
 
-const AllProducts = () => {
+const AllProducts = ({AddToCart}) => {
   const [allProducts, setAllProduct] = useState([]);
   const [allCategory, setAllCategory] = useState([]);
   const [products, setProducts] = useState([]);
@@ -38,8 +39,7 @@ const AllProducts = () => {
 
   const filterProducts = (category) => {
     setSelectProducts(category);
-    setShowProduct(true)
-
+    setShowProduct(true);
   };
 
   // single product
@@ -64,7 +64,7 @@ const AllProducts = () => {
   }, [selectProducts]);
 
   return (
-    <div className="mt-20">
+    <div className="mt-20 bg-white">
       <div className="relative">
         <img
           src={productImg}
@@ -79,8 +79,11 @@ const AllProducts = () => {
 
       {/* product category section  */}
 
-      <div className="flex gap-3 flex-wrap my-6">
-        <select onChange={(e) => filterProducts(e.target.value)}>
+      <div className="flex gap-3 flex-wrap my-10 justify-center">
+        <select
+          onChange={(e) => filterProducts(e.target.value)}
+          className="border-2 py-1 px-2 rounded-lg bg-slate-300 font-semibold text-lg"
+        >
           <option> Filter by Category</option>
 
           {allCategory.length > 0 ? (
@@ -101,56 +104,72 @@ const AllProducts = () => {
       {/* product section  */}
 
       {showProduct ? (
-        <section className="text-gray-600 body-font">
-          <div className="container px-5 py-24 mx-auto">
-            <div className="flex gap-4 flex-wrap justify-center">
-              {products.map((item) => (
-                <div className="lg:w-1/4 md:w-1/2 p-4 w-full border-2 rounded-xl">
-                  <a className="block relative rounded overflow-hidden">
-                    <img
-                      alt="ecommerce"
-                      className="object-cover object-center w-full h-full block"
-                      src={item.thumbnail}
-                    />
-                  </a>
-                  <div className="mt-4">
-                    <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                      Title: {item.title}
-                    </h3>
-                    <h2 className="text-gray-900 title-font text-lg font-medium">
-                      Rating: {item.rating}
+        <div className="flex gap-3 flex-wrap justify-center">
+         {products.map((item) => (
+            <div className=" card card-compact bg-base-100 w-72 h-96 shadow-xl border rounded justify-center">
+              <figure className="border m-4">
+                <img src={item.thumbnail} alt="ecommerce" />
+              </figure>
+              <div className="card-body ">
+                <h2 className="card-title text-sm font-sans">
+                  Title: {item.title}
+                </h2>
+                <div className="flex justify-between">
+                  <div>
+                    <h2 className="card-title text-xl text-orange-600">
+                      Price: ${item.price}
                     </h2>
-                    <p className="mt-1">Price: ${item.price}</p>
+                    <p className="flex gap-2">
+                      Rating: {item.rating} ||
+                      <span className="flex text-orange-800 fill-orange-600 mt-1">
+                        {" "}
+                        <CiStar /> <CiStar /> <CiStar />
+                        <CiStar /> <CiStar />
+                      </span>
+                    </p>
+                  </div>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-sm btn-primary text-sm mt-3" onClick={()=> AddToCart(item)}>
+                      Buy Now
+                    </button>
                   </div>
                 </div>
-
-                // <div className="border-2 mb-3">
-                //     <img src={item.thumbnail} alt="" />
-                //     <p>Title: {item.title} </p>
-                //     <p>Price: ${item.price} </p>
-                //     <p>Rating: {item.rating} </p>
-                // </div>
-              ))}
+              </div>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
       ) : (
+        
         <div className="flex gap-3 flex-wrap justify-center">
           {allProducts.map((allItems, index) => (
-            <div key={index} className="border-2 p-4 rounded-xl bg-slate-200">
-              <img
-                alt="ecommerce"
-                className="object-cover object-center block "
-                src={allItems.thumbnail}
-              />
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+            <div className=" card card-compact bg-base-100 w-72 h-96 shadow-xl border rounded justify-center">
+              <figure className="border m-4">
+                <img src={allItems.thumbnail} alt="ecommerce" />
+              </figure>
+              <div className="card-body ">
+                <h2 className="card-title text-sm font-sans">
                   Title: {allItems.title}
-                </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  Rating: {allItems.rating}
                 </h2>
-                <p className="mt-1">Price: ${allItems.price}</p>
+                <div className="flex justify-between">
+                  <div>
+                    <h2 className="card-title text-xl text-orange-600">
+                      Price: ${allItems.price}
+                    </h2>
+                    <p className="flex gap-2">
+                      Rating: {allItems.rating} ||
+                      <span className="flex text-orange-800 fill-orange-600 mt-1">
+                        {" "}
+                        <CiStar /> <CiStar /> <CiStar />
+                        <CiStar /> <CiStar />
+                      </span>
+                    </p>
+                  </div>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-sm btn-primary text-sm mt-3" onClick={()=> AddToCart(allItems)}>
+                      Buy Now
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
