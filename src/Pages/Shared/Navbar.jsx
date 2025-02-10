@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { TiShoppingCart } from "react-icons/ti";
 
 const Navbar = () => {
   const [scrollingUp, setScrollingUp] = useState(true);
@@ -8,38 +9,22 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink
-          to="/"
-          className="nav-link"
-          activeClassName="active"
-        >
+        <NavLink to="/" className="nav-link" >
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/About"
-          className="nav-link"
-          activeClassName="active"
-        >
-          About
+        <NavLink to="/AllProducts" className="nav-link" >
+          All Products
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/Blog"
-          className="nav-link"
-          activeClassName="active"
-        >
+        <NavLink to="/Blog" className="nav-link" >
           Blog
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/Contact"
-          className="nav-link"
-          activeClassName="active"
-        >
+        <NavLink to="/Contact" className="nav-link" >
           Contact
         </NavLink>
       </li>
@@ -94,62 +79,38 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              {navLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Ocean</a>
+          <NavLink to="/" className="nav-link text-2xl md:lg font-bold pl-4">
+            Ocean
+            <span className="text-orange-600">Shop</span>
+          </NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
-        <div className="navbar-end flex items-center space-x-4">
+        <div className="navbar-end flex items-center space-x-4 ">
           {/* Search Option (left side) */}
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="input input-bordered input-sm focus:outline-none"
-            />
-            <button className="btn btn-sm text-black border border-gray-300 hover:bg-transparent focus:outline-none">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M11 4a7 7 0 017 7 7 7 0 01-7 7 7 7 0 01-7-7 7 7 0 017-7zm0 14a7 7 0 007-7 7 7 0 00-7-7 7 7 0 00-7 7 7 7 0 007 7zm7 0l4 4"
-                />
-              </svg>
-            </button>
+          <div className="hidden md:block">
+            <div className="flex items-center space-x-2">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="input input-bordered input-sm focus:outline-none"
+              />
+            </div>
           </div>
 
           {/* Login Button (right side) */}
           <NavLink
-            to="/login"
+            to="/Login"
             className="btn btn-sm text-black border border-gray-300 hover:bg-transparent focus:outline-none"
           >
             Login
+          </NavLink>
+          <NavLink to="/cart" className=" text-black  ">
+            <TiShoppingCart size={30} />
           </NavLink>
         </div>
       </div>

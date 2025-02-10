@@ -5,6 +5,10 @@ import Root from '../Root/Root';
 import About from '../Components/About/About';
 import Contact from '../Components/Contact/Contact';
 import Blog from '../Components/Blog/Blog';
+import Cart from '../Pages/Cart/Cart';
+import AllProducts from '../Components/AllProducts/AllProducts';
+import Login from '../Pages/Login/Login';
+import SignUp from '../Pages/SignUp/SignUp';
 
 const Router = createBrowserRouter([
     {
@@ -16,8 +20,8 @@ const Router = createBrowserRouter([
                 element:<Home></Home>
             },
             {
-                path:'/About',
-                element: <About></About>
+                path:'/AllProducts',
+                element: <AllProducts></AllProducts>
             },
             {
                 path:'/Blog',
@@ -26,6 +30,18 @@ const Router = createBrowserRouter([
             {
                 path:'/Contact',
                 element: <Contact></Contact>
+            },
+            {
+                path:'/Login',
+                element: <Login></Login>
+            },
+            {
+                path:'/SingUp',
+                element: <SignUp></SignUp>
+            },
+            {
+                path:'/Cart',
+                element: <Cart></Cart>
             }
         ]
     }

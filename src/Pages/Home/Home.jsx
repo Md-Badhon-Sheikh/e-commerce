@@ -9,6 +9,8 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import Service from "../../Components/Service/Service";
+import Gallery from "../../Components/Gallery/Gallery";
 
 const Home = () => {
   const progressCircle = useRef(null);
@@ -76,6 +78,16 @@ const Home = () => {
       </section>
 
       {/* Swiper End  */}
+
+
+      {/* Service section Start */}
+          
+          <Service></Service>
+      {/* Service section End  */}
+
+      {/* Gallery section Start */}
+          <Gallery></Gallery>
+      {/* Gallery section End  */}
 
       {/* Hero section  Start */}
 
