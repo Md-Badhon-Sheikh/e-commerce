@@ -7,6 +7,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+// carousal image 
+
+import c01 from "../../assets/carousal/cOivwgngUN7eG89qzRNpkdTwKl2gmELrArtihTrH.jpg"
+import c02 from "../../assets/carousal/slider_winter_24_new_02.jpg"
+import c03 from "../../assets/carousal/womens_aw24_slider_01.jpg"
+import c04 from "../../assets/carousal/gift_box.jpg"
+
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Service from "../../Components/Service/Service";
@@ -41,31 +48,31 @@ const Home = () => {
           className="mySwiper"
         >
           <SwiperSlide>
-            <img src="/src/assets/img/carousel 04.jpg" alt="" />
+            <img src={c03} alt="" />
           </SwiperSlide>
 
           <SwiperSlide>
-            <img src="/src/assets/img/featured prodct 01.jpg" alt="" />
+            <img src={c01} alt="" />
           </SwiperSlide>
 
           <SwiperSlide>
-            <img src="/src/assets/img/featured prodct 02.jpg" alt="" />
+            <img src={c04} alt="" />
           </SwiperSlide>
 
           <SwiperSlide>
-            <img src="/src/assets/img/featured prodct 03.jpg" alt="" />
+            <img src={c03} alt="" />
           </SwiperSlide>
 
           <SwiperSlide>
-            <img src="/src/assets/img/featured prodct 04.jpg" alt="" />
+            <img src={c01} alt="" />
           </SwiperSlide>
 
           <SwiperSlide>
-            <img src="/src/assets/img/carousel 04.jpg" alt="" />
+            <img src={c02} alt="" />
           </SwiperSlide>
 
           <SwiperSlide>
-            <img src="/src/assets/img/featured prodct 02.jpg" alt="" />
+            <img src={c03} alt="" />
           </SwiperSlide>
 
           <div className="autoplay-progress" slot="container-end">

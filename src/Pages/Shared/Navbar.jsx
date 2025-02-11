@@ -20,12 +20,12 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to="/Blog" className="nav-link" >
-          Blog
+          Mans
         </NavLink>
       </li>
       <li>
         <NavLink to="/Contact" className="nav-link" >
-          Contact
+          Kids
         </NavLink>
       </li>
     </>
