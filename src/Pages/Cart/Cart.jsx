@@ -156,10 +156,11 @@ const Cart = () => {
               <input
                 type="text"
                 id="promo"
-                placeholder="Enter your code"
+                placeholder="Use pwad promo code 10% discount"
                 className="p-2 text-sm w-full"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
+                
               />
             </div>
             <button
