@@ -1,8 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import login from "../../assets/gallery/g03.jpg";
 import { NavLink } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../FirebaseAuth/FirebaseAuth";
+
 
 const Login = () => {
+
+  const navigateHome = useNavigate();
+  const [userSignUp, setUserSignUp] = useState({
+
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    // console.log(e.target.value)
+    setUserSignUp({ ...userSignUp, [e.target.name]: e.target.value });
+    // console.log(userSignUp);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(!userSignUp.email || !userSignUp.password){
+      return toast.error("All fields are required")
+    }else{
+      signInWithEmailAndPassword( auth, userSignUp.email, userSignUp.password )
+      .then((res) => {
+       
+        navigateHome("/")
+
+      })
+      .catch((err) => toast.error(err.message))
+    }
+  }
+
+
   return (
     <div className="mt-20 bg-gray-200">
       <div className="relative">
@@ -30,10 +65,12 @@ const Login = () => {
                 Email
               </label>
               <input
+                autoComplete="off"
                 type="email"
-                id="email"
                 name="email"
+                value={userSignUp.email}
                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                onChange={handleChange}
               />
             </div>
             <div className="relative mb-4">
@@ -41,13 +78,15 @@ const Login = () => {
                 Password
               </label>
               <input
+                autoComplete="off"
                 type="password"
-                id="email"
-                name="email"
+                name="password"
+                value={userSignUp.password}
                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                onChange={handleChange}
               />
             </div>
-            <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+            <button className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" onClick={handleSubmit}>
               Login
             </button>
             <p className=" text-xs text-black mt-4">

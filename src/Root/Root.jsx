@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Pages/Shared/Navbar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../Pages/Shared/Footer';
+import { Toaster } from 'react-hot-toast';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../FirebaseAuth/FirebaseAuth';
 
 const Root = () => {
     const [cart, setCart] = useState([]);
+    const [userName, setUserName] = useState("")
 
     // Add to cart function
     const addToCart = (product) => {
@@ -50,10 +54,23 @@ const Root = () => {
        setCart (updateByFilter);
     }
 
+    // userName display 
+
+    useEffect(() => {
+        auth.onAuthStateChanged(( user) =>{
+            if(user){
+                setUserName(user.displayName);
+            }else{
+                setUserName("")
+            }
+        });
+    },[]);
+
     return (
         <div>
-            <Navbar cart = {cart} />
+            <Navbar cart = {cart} userName = {userName} />
             <Outlet context={{ cart, addToCart, handleInc, handleDec, handleRemove }} />
+            <Toaster></Toaster>
             <Footer />
         </div>
     );
