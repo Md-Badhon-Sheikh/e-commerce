@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useOutletContext } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, handleInc, handleDec, setCart } = useOutletContext();
+  const { cart, handleInc, handleDec, setCart, handleRemove } = useOutletContext();
   const [promoCode, setPromoCode] = useState("");
   const [message, setMessage] = useState("");
   const [discount, setDiscount] = useState(0); // To store the discount percentage (10% or 0%)
@@ -86,7 +86,7 @@ const Cart = () => {
                     <a
                       href="#"
                       className="font-semibold hover:text-red-500 text-gray-500 text-xs"
-                    >
+                      onClick={() => handleRemove(product.id)} >
                       Remove
                     </a>
                   </div>

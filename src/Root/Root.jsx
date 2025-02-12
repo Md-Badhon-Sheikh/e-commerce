@@ -44,11 +44,16 @@ const Root = () => {
             )
         );
     };
+    // Handle remove 
+    const handleRemove = (id) => {
+       const updateByFilter = cart.filter((filterItem)=> filterItem.id !== id )
+       setCart (updateByFilter);
+    }
 
     return (
         <div>
-            <Navbar />
-            <Outlet context={{ cart, addToCart, handleInc, handleDec }} />
+            <Navbar cart = {cart} />
+            <Outlet context={{ cart, addToCart, handleInc, handleDec, handleRemove }} />
             <Footer />
         </div>
     );
