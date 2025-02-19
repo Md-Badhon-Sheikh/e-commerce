@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import productImg from "../../assets/gallery/g03.jpg";
 import { CiStar } from "react-icons/ci";
+import { FaSearch } from "react-icons/fa";
 import { useOutletContext } from 'react-router-dom'; // Import to access context
 
 const AllProducts = () => {
@@ -11,11 +12,14 @@ const AllProducts = () => {
     const [products, setProducts] = useState([]);
     const [selectProducts, setSelectProducts] = useState("");
     const [showProduct, setShowProduct] = useState(false);
+    const [searchItem, setSearchItem] = useState('');
+    const[minPrice, setMinPrice] = useState("");
+    const[maxPrice, setMaxPrice] = useState("");
 
     // Fetch all products
     useEffect(() => {
         const AllProducts = async () => {
-            const res = await axios("https://dummyjson.com/products");
+            const res = await axios("allProduct.json");
             setAllProduct(res.data.products);
         };
 
@@ -60,6 +64,29 @@ const AllProducts = () => {
         getProducts();
     }, [selectProducts]);
 
+    // search products 
+
+    const handleSearchBtn = () =>{
+        const searchProduct = allProducts.filter((searchFilterItem)=>(
+            searchFilterItem.title.toLowerCase().includes(searchItem.toLocaleLowerCase())
+        ))
+
+        setAllProduct(searchProduct);
+    }
+
+    // price filter 
+
+    const handlePrice = ()=>{
+        let min = parseFloat(minPrice)
+        let max = parseFloat(maxPrice)
+        const filterPrice = allProducts.filter((priceItem) => (
+            (!min || priceItem.price >= min) && (!max || priceItem.price <= max)
+        ))
+
+        setAllProduct(filterPrice);
+    }
+
+
     return (
         <div className="mt-20 bg-white">
             {/* Banner section */}
@@ -96,7 +123,44 @@ const AllProducts = () => {
                 </select>
             </div>
 
+                    {/* search product  */}
+
+            <div className="text-center ml-8 my-3 text-xl flex justify-center">
+                <input type="text" 
+                placeholder="Search Item" 
+                className="border-2 px-2 py-2 rounded-xl" 
+                onChange={(e)=> setSearchItem (e.target.value)}
+                value={searchItem}
+                />
+                <button className="text-4xl ml-3" onClick={handleSearchBtn}><FaSearch /></button>
+            </div>
+
+            {/* product filter by price  */}
+
+            <div className="text-center my-6 text-xl flex justify-center gap-3">
+                <input type="text" 
+                placeholder="Min Price" 
+                className="border-2 px-1 py-1 rounded-lg" 
+                onChange={(e)=> setMinPrice(e.target.value)}
+                value={minPrice}
+                />
+
+
+                <input type="text" 
+                placeholder="Max Price" 
+                className="border-2 px-1 py-1 rounded-lg" 
+                onChange={(e)=> setMaxPrice (e.target.value)}
+                value={maxPrice}
+                />
+
+
+                <button className="text-xl font-semibold bg-black text-white px-2 rounded-lg" onClick={handlePrice}>Filter by price</button>
+            </div>
+
+
+
             {/* Product display section */}
+
             <div className="flex gap-3 flex-wrap justify-center">
                 {showProduct ? (
                     products.map((item) => (
