@@ -10,6 +10,7 @@ import AllProducts from "../Components/AllProducts/AllProducts";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import AdminPanel from "../Pages/AdminPanel/AdminPanel";
+import SingleProduct from "../Pages/SingleProduct/SingleProduct";
 
 const Router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const Router = createBrowserRouter([
       {
         path: "/Admin",
         element: <AdminPanel></AdminPanel>
+      },
+      {
+        path: "/SingleProduct/:productId",
+        element: <SingleProduct></SingleProduct>
       },
     ],
   },
