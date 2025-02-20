@@ -6,11 +6,12 @@ import About from "../Components/About/About";
 import Contact from "../Components/Contact/Contact";
 import Blog from "../Components/Blog/Blog";
 import Cart from "../Pages/Cart/Cart";
-import AllProducts from "../Components/AllProducts/AllProducts";
+
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import AdminPanel from "../Pages/AdminPanel/AdminPanel";
 import SingleProduct from "../Pages/SingleProduct/SingleProduct";
+import AllProducts from "../Components/AllProducts/AllProducts";
 
 const Router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/AllProducts",
-        element: <AllProducts></AllProducts>,
+        element: <AllProducts></AllProducts>
       },
       {
         path: "/Blog",
@@ -50,7 +51,7 @@ const Router = createBrowserRouter([
         element: <AdminPanel></AdminPanel>
       },
       {
-        path: "/SingleProduct/:productId",
+        path: `//SingleProduct/:productId`,
         element: <SingleProduct></SingleProduct>
       },
     ],
