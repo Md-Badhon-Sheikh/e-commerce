@@ -115,7 +115,7 @@ const Cart = () => {
                   ${product.price}
                 </span>
                 <span className="text-center w-1/5 font-semibold text-sm">
-                  ${product.price * product.quantity}
+                  ${(product.price * product.quantity).toFixed(2)}
                 </span>
               </div>
             ))}
@@ -140,7 +140,7 @@ const Cart = () => {
             <div className="flex justify-between mt-10 mb-5">
               <span className="font-semibold text-sm uppercase">Items {cart.length}</span>
               <span className="font-semibold text-sm">
-                ${getTotalPrice()}
+                ${(getTotalPrice().toFixed(2))}
               </span>
             </div>
             <div>
@@ -173,7 +173,7 @@ const Cart = () => {
             <div className="border-t mt-8">
               <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                 <span>Total cost</span>
-                <span>${getTotalPrice() + 10}</span>
+                <span>${(getTotalPrice() + 10).toFixed(2)}</span>
               </div>
               <button
                 className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
