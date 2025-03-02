@@ -209,6 +209,12 @@ const AllProducts = () => {
                       >
                         Buy Now
                       </button>
+                      <button
+                        className="btn btn-sm btn-primary text-sm mt-3"
+                        onClick={() => addToCart(item)}
+                      >
+                        Buy Now
+                      </button>
                     </div>
                   </div>
                 </div>
