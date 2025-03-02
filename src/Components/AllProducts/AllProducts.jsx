@@ -23,7 +23,7 @@ const AllProducts = () => {
       const data = await res.json();
       setAllProduct(data)
     };
-    
+
     AllProducts();
   }, []);
 
@@ -105,7 +105,7 @@ const AllProducts = () => {
         </h2>
       </div>
       {/* search section  */}
-      <div className=" w-[1250px] bg-slate-300 py-1 my-9 mx-auto rounded-xl">
+      <div className=" w-[1250px] bg-slate-200 py-1 my-9 mx-auto rounded-xl">
         {/* Product filter by category */}
         <div className="text-center my-4">
           <select
@@ -204,16 +204,10 @@ const AllProducts = () => {
                     </div>
                     <div className="card-actions justify-end">
                       <button
-                        className="btn btn-sm btn-primary text-sm mt-3"
+                        className="px-2 py-2 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-all"
                         onClick={() => addToCart(item)}
                       >
-                        Buy Now
-                      </button>
-                      <button
-                        className="btn btn-sm btn-primary text-sm mt-3"
-                        onClick={() => addToCart(item)}
-                      >
-                        Buy Now
+                        Add to Cart
                       </button>
                     </div>
                   </div>
@@ -221,7 +215,7 @@ const AllProducts = () => {
               </div>
             ))
             : allProducts?.length > 0
-          ? allProducts.map((item) => (
+            ? allProducts.map((item) => (
               <div
                 key={item.id}
                 className="card card-compact bg-base-100 w-72 h-96 mb-4 shadow-xl border rounded"
@@ -249,17 +243,17 @@ const AllProducts = () => {
                     </div>
                     <div className="card-actions justify-end">
                       <button
-                        className="btn btn-sm btn-primary text-sm mt-3"
+                        className="px-2 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all"
                         onClick={() => addToCart(item)}
                       >
-                        Buy Now
+                         Add to Cart
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
-            ))
-            : <div>No products available</div>}
+             ))
+             : <div>No products available</div>}
       </div>
     </div>
   );

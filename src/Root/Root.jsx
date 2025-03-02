@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../Pages/Shared/Navbar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../Pages/Shared/Footer';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../FirebaseAuth/FirebaseAuth';
 
@@ -22,11 +22,13 @@ const Root = () => {
                         ? { ...item, quantity: item.quantity + 1 }
                         : item
                 );
+                
             } else {
                 // Add new product to the cart
                 return [...prevCart, { ...product, quantity: 1 }];
             }
         });
+        toast.success("Product Added to Cart");
     };
 
     // Increase product quantity
